@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class Index extends Component {
     render() {
-        return <div>Home</div>
+        return <div>首页</div>
     }
 }
 
