@@ -13,7 +13,6 @@ class Home extends Component {
         super(props);
     }
     render() {
-        console.log(this.props.history.location.pathname);
         return (
             <div style={{ position: 'fixed', height: '100%', width: '100%', bottom: 0 }}>
                 <TabBar

@@ -3,9 +3,6 @@ import { HashRouter as Router, Route, Link, Redirect, Switch } from 'react-route
 import Home from './pages/home'
 
 class App extends Component {
-  componentDidMount() {
-    console.log(this.props);
-  }
   render() {
     return <div>
       <Router>
