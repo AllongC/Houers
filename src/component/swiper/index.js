@@ -15,7 +15,6 @@ class Swiper extends Component {
     componentDidMount() {
         // 获取轮播图
         axios.get('http://157.122.54.189:9060/home/swiper').then(res => {
-            console.log(res);
             this.setState({
                 swiper: res.data.body
             })
