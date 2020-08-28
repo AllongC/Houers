@@ -1,0 +1,59 @@
+.renting {
+    padding: 20px 10px;
+
+    .renting_top {
+        display: flex;
+        padding-bottom: 10px;
+        .renting_top_title {
+            flex: 1;
+            text-align: left;
+            font-size: 14px;
+            margin-left: 15px;
+        }
+
+        .renting_top_more {
+            flex: 1;
+            text-align: right;
+            color: #999;
+            font-size: 14px;
+            margin-right: 5px;
+        }
+    }
+
+    .renting_bottom {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        .renting_bottom_item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 47%;
+            margin: 5px;
+            padding: 15px 15px;
+            background-color: white;
+            .renting_bottom_item_left {
+                flex: 1;
+                text-align: center;
+                .renting_bottom_item_left_title {
+                    font-size: 13px;
+                }
+
+                .renting_bottom_item_left_desc {
+                    margin-top: 8px;
+                    font-size: 13px;
+                    color: #999;
+                }
+            }
+
+            .renting_bottom_item_right {
+                flex: 1;
+                text-align: right;
+                img {
+                    width: 80%;
+                }
+            }
+        }
+    }
+}

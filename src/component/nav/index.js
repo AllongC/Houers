@@ -8,7 +8,6 @@ import nav4 from '../../assets/images/nav-4.png'
 
 // 引入样式
 import navCss from './index.module.scss'
-console.log(navCss);
 class Nav extends Component {
     constructor() {
         super()
