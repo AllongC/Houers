@@ -6,7 +6,7 @@ import axios from 'axios'
 let instanceTime = 0
 
 
-export const baseURL = 'http://157.122.54.189:9060'
+export const baseURL = process.env.REACT_APP_URL
 export const instance = axios.create({
     baseURL,
 });
