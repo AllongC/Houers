@@ -18,7 +18,6 @@ class Newest extends Component {
             this.setState({
                 newestList: res.data.body
             })
-            console.log(this.state.newestList);
         })
     }
     render() {
