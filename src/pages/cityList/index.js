@@ -1,9 +1,22 @@
 import React, { Component } from 'react'
-
+import { NavBar, Icon } from 'antd-mobile';
+import { connect } from 'react-redux'
 class CityList extends Component {
     render() {
-        return <div>城市列表</div>
+        return <div>
+            <NavBar
+                mode="light"
+                icon={<Icon type="left" />}
+                onLeftClick={() => console.log('onLeftClick')}
+            >{this.props.cityName}</NavBar>
+        </div>
     }
 }
 
-export default CityList;
+const mapStateToProps = (state) => {
+    return {
+        cityName: state.cityReducer.cityName
+    }
+}
+
+export default connect(mapStateToProps)(CityList);

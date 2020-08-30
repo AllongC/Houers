@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Route, Redirect } from 'react-router-dom'
 import CityList from './pages/cityList'
 import Home from './pages/home'
+// 引入connect
+import { connect } from 'react-redux'
+
+import { initCityAsync } from './store/actionCreator'
 
 class App extends Component {
+  componentDidMount() {
+    this.props.getInitCity()
+  }
   render() {
     return <div>
       <Router>
@@ -16,5 +23,16 @@ class App extends Component {
     </div>
   }
 }
-
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    cityName: state.cityReducer.cityName
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getInitCity() {
+      dispatch(initCityAsync())
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App);
