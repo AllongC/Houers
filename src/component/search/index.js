@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 // 引入search组件
 import searchCss from "./index.module.scss";
-
+// 引入路由信息
+import { withRouter } from "react-router";
 // 引入connect
 import { connect } from 'react-redux'
 
@@ -13,7 +14,7 @@ class Search extends Component {
         this.props.getInitCity()
     }
     render() {
-        return <div className={searchCss.search}>
+        return <div className={searchCss.search} onClick={() => { this.props.history.push('/citylist') }}>
             <div className={searchCss.search_left}>
                 <p>{this.props.cityName}</p>
             </div>
@@ -42,4 +43,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Search));
