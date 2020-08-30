@@ -2,25 +2,20 @@ import React, { Component } from "react";
 
 // 引入search组件
 import searchCss from "./index.module.scss";
-// 引入地图js
-import { getCity } from '../../untils/baiduMap'
 
+// 引入connect
+import { connect } from 'react-redux'
+
+import { initCityAsync } from '../../store/actionCreator'
 
 class Search extends Component {
-    state = {
-        cityName: ''
-    }
     componentDidMount() {
-        getCity().then(res => {
-            this.setState({
-                cityName: res.name.replace(/市$/g, '')
-            })
-        })
+        this.props.getInitCity()
     }
     render() {
         return <div className={searchCss.search}>
             <div className={searchCss.search_left}>
-                <p>{this.state.cityName}</p>
+                <p>{this.props.cityName}</p>
             </div>
             <div className={searchCss.search_right}>
                 <i className={["iconfont icon-seach", searchCss.seach_icon].join(' ')}></i>
@@ -33,4 +28,18 @@ class Search extends Component {
     }
 }
 
-export default Search;
+const mapStateToProps = (state) => {
+    return {
+        cityName: state.cityReducer.cityName
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getInitCity() {
+            dispatch(initCityAsync())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);
