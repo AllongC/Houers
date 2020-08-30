@@ -6,7 +6,8 @@ import Swiper from "../component/swiper";
 import Nav from "../component/nav";
 // 移入租房小组
 import Renting from '../component/renting'
-
+//引入最新资讯
+import Newest from "../component/newest";
 
 class Index extends Component {
     render() {
@@ -22,6 +23,10 @@ class Index extends Component {
             {/* 3.0 租房小组 start */}
             <Renting></Renting>
             {/* 3.0 租房小组 end */}
+
+            {/* 4.0 最新资讯 start */}
+            <Newest></Newest>
+            {/* 4.0 最新资讯 end */}
         </div>
     }
 }
