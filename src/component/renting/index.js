@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
-// 引入axios
-import axios from "axios";
+// 引入axios实例
+import { instance as axios, baseURL } from '../../untils/request';
 // 引入scss文件
 import renCss from './index.module.scss'
 
@@ -13,7 +13,7 @@ class Renting extends Component {
         }
     }
     componentDidMount() {
-        axios.get('http://157.122.54.189:9060/home/groups').then(res => {
+        axios.get('/home/groups').then(res => {
             this.setState({
                 rentingList: res.data.body
             })
@@ -33,7 +33,7 @@ class Renting extends Component {
                         <p className={renCss.renting_bottom_item_left_desc}>{item.desc}</p>
                     </div>
                     <div className={renCss.renting_bottom_item_right}>
-                        <img src={'http://157.122.54.189:9060' + item.imgSrc} />
+                        <img src={baseURL + item.imgSrc} />
                     </div>
                 </div>)}
             </div>

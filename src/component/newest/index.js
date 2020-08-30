@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-// 引入axios
-import axios from "axios";
+// 引入axios实例
+import { instance as axios, baseURL } from '../../untils/request';
 // 引入scss文件
 import newCss from './index.module.scss'
 
@@ -14,7 +14,7 @@ class Newest extends Component {
         }
     }
     componentDidMount() {
-        axios.get('http://157.122.54.189:9060/home/news').then(res => {
+        axios.get('/home/news').then(res => {
             this.setState({
                 newestList: res.data.body
             })
@@ -29,7 +29,7 @@ class Newest extends Component {
             <div className={newCss.newest_bottom}>
                 {newestList.map(item => <div className={newCss.newest_bottom_item} key={item.id}>
                     <div className={newCss.newest_bottom_item_left}>
-                        <img src={"http://157.122.54.189:9060" + item.imgSrc} />
+                        <img src={baseURL + item.imgSrc} />
                     </div>
                     <div className={newCss.newest_bottom_item_right}>
                         <h3>{item.title}</h3>

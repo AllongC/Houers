@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 
-
 // 引入ant design 组件库
 import { Carousel } from 'antd-mobile';
-// 引入axios
-import axios from "axios";
+// 引入axios实例
+import { instance as axios, baseURL } from '../../untils/request';
 
 
 class Swiper extends Component {
@@ -14,7 +13,7 @@ class Swiper extends Component {
     }
     componentDidMount() {
         // 获取轮播图
-        axios.get('http://157.122.54.189:9060/home/swiper').then(res => {
+        axios.get('/home/swiper').then(res => {
             this.setState({
                 swiper: res.data.body
             })
@@ -35,7 +34,7 @@ class Swiper extends Component {
                         style={{ display: 'block', width: '100%', height: this.state.imgHeight }}
                     >
                         <img
-                            src={`http://157.122.54.189:9060` + item.imgSrc}
+                            src={baseURL + item.imgSrc}
                             alt=""
                             style={{ width: '100%', verticalAlign: 'top' }}
                             onLoad={() => {

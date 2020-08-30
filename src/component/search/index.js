@@ -12,7 +12,6 @@ class Search extends Component {
     }
     componentDidMount() {
         getCity().then(res => {
-            console.log(res);
             this.setState({
                 cityName: res.name.replace(/市$/g, '')
             })
