@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { NavBar, Icon } from 'antd-mobile';
 import { connect } from 'react-redux'
 class CityList extends Component {
+    componentDidMount() {
+        console.log(this.props.cityName);
+    }
     render() {
         return <div>
             <NavBar
