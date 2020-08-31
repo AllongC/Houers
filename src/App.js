@@ -13,13 +13,13 @@ class App extends Component {
   }
   render() {
     return <div>
-      <Router>
+      {this.props.cityName && <Router>
         <Route exact path="/">
           <Redirect to='/home/index' />
         </Route>
         <Route path="/home" component={Home} />
         <Route path="/citylist" component={CityList} />
-      </Router>
+      </Router>}
     </div>
   }
 }

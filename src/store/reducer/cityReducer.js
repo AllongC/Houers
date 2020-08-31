@@ -1,5 +1,5 @@
 const defaultState = {
-    cityName: '北京'
+    cityName: ''
 }
 export default (state = defaultState, action) => {
     const newState = JSON.parse(JSON.stringify(state))
