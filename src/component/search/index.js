@@ -11,15 +11,15 @@ import { initCityAsync } from '../../store/actionCreator'
 
 class Search extends Component {
     render() {
-        return <div className={searchCss.search} onClick={() => { this.props.history.push('/citylist') }}>
-            <div className={searchCss.search_left}>
+        return <div className={searchCss.search} >
+            <div className={searchCss.search_left} onClick={() => { this.props.history.push('/citylist') }}>
                 <p>{this.props.cityName}</p>
             </div>
             <div className={searchCss.search_right}>
                 <i className={["iconfont icon-seach", searchCss.seach_icon].join(' ')}></i>
                 <input type="text" placeholder="请输入小区或地址" />
             </div>
-            <div className={searchCss.search_icon}>
+            <div className={searchCss.search_icon} onClick={() => { this.props.history.push('/Map') }}>
                 <i className={["iconfont icon-map", searchCss.map_icon].join(' ')}></i>
             </div>
         </div>

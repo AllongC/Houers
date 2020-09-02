@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Route, Redirect } from 'react-router-dom'
 import CityList from './pages/cityList'
 import Home from './pages/home'
+import Map from "./pages/map";
 // 引入connect
 import { connect } from 'react-redux'
 
@@ -21,6 +22,7 @@ class App extends Component {
         </Route>
         <Route path="/home" component={Home} />
         <Route path="/citylist" component={CityList} />
+        <Route path="/Map" component={Map} />
       </Router>}
     </div>
   }

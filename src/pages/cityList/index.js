@@ -86,7 +86,7 @@ class CityList extends Component {
             <NavBar
                 mode="light"
                 icon={<Icon type="left" />}
-                onLeftClick={() => console.log('onLeftClick')}
+                onLeftClick={this.props.history.goBack}
             >{this.props.cityName}</NavBar>
             {/*1.0 头部 end */}
 
