@@ -10,7 +10,8 @@ import listCss from './index.module.scss'
 class CityList extends Component {
     state = {
         list: [],
-        letter: []
+        letter: [],
+        currentIndex: 0
     }
     rowRenderer = ({
         key, // Unique key within array of rows
@@ -63,7 +64,7 @@ class CityList extends Component {
         return axios.get('/area/city?level=1')
     }
     render() {
-        const { list } = this.state
+        const { list, letter, currentIndex } = this.state
         return <div>
             {/*1.0 头部 start */}
             <NavBar
@@ -82,6 +83,11 @@ class CityList extends Component {
                     rowHeight={this.rowHeight}
                     rowRenderer={this.rowRenderer}
                 />
+                <div className={listCss.letter_box}>
+                    {letter.map((item, index) => <div key={item} className={listCss.letter_box_item}>
+                        <span className={[listCss.letter_box_items, currentIndex === index ? listCss.letter_box_active : ' '].join(' ')}>{item}</span>
+                    </div>)}
+                </div>
             </div>
             {/* 2.0 列表 end */}
         </div>
