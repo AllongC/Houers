@@ -63,6 +63,16 @@ class CityList extends Component {
     getAllCity = () => {
         return axios.get('/area/city?level=1')
     }
+    onRowsRendered = ({ startIndex }) => {
+        this.setState({
+            currentIndex: startIndex
+        })
+    }
+    changeCurrent = (index) => {
+        this.setState({
+            currentIndex: index
+        })
+    }
     render() {
         const { list, letter, currentIndex } = this.state
         return <div>
@@ -82,10 +92,18 @@ class CityList extends Component {
                     rowCount={list.length}
                     rowHeight={this.rowHeight}
                     rowRenderer={this.rowRenderer}
+                    onRowsRendered={this.onRowsRendered}
+                    scrollToIndex={currentIndex}
+                    scrollToAlignment="start"
                 />
                 <div className={listCss.letter_box}>
                     {letter.map((item, index) => <div key={item} className={listCss.letter_box_item}>
-                        <span className={[listCss.letter_box_items, currentIndex === index ? listCss.letter_box_active : ' '].join(' ')}>{item}</span>
+                        <span
+                            className={[listCss.letter_box_items, currentIndex === index ? listCss.letter_box_active : ' '].join(' ')}
+                            onClick={() => { this.changeCurrent(index) }}
+                        >
+                            {item}
+                        </span>
                     </div>)}
                 </div>
             </div>
