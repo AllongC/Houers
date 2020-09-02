@@ -6,6 +6,8 @@ import { List } from 'react-virtualized';
 import { instance as axios } from '../../untils/request';
 // 引入css
 import listCss from './index.module.scss'
+// 更改城市
+import { changeCity } from '../../store/actionCreator'
 
 class CityList extends Component {
     state = {
@@ -25,10 +27,14 @@ class CityList extends Component {
             <div key={key} style={style}>
                 <div className={listCss.list_item}>
                     {list[index].name}
-                    {list[index].list.map(item => <div key={item} className={listCss.list_items}>{item}</div>)}
+                    {list[index].list.map(item => <div onClick={() => { this.goCity(item) }} key={item} className={listCss.list_items}>{item}</div>)}
                 </div>
             </div>
         );
+    }
+    goCity = (cityName) => {
+        this.props.changeCity(cityName)
+        this.props.history.goBack();
     }
     async componentDidMount() {
         const res = await Promise.all([this.getHotCity(), this.getAllCity()])
@@ -114,8 +120,17 @@ class CityList extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        cityName: state.cityReducer.cityName
+        cityName: state.cityReducer.cityName,
     }
 }
 
-export default connect(mapStateToProps)(CityList);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changeCity(cityName) {
+            dispatch(changeCity(cityName))
+        }
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(CityList);

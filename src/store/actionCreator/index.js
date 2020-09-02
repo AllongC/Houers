@@ -11,3 +11,7 @@ export const initCityAsync = () => {
         })
     })
 }
+
+export const changeCity = (cityName) => {
+    return { type: 'CHANGECITY', cityName }
+}

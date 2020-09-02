@@ -8,7 +8,10 @@ export default (state = defaultState, action) => {
             newState.cityName = action.cityName
             return newState
             break;
-
+        case 'CHANGECITY':
+            newState.cityName = action.cityName
+            return newState
+            break;
         default:
             break;
     }

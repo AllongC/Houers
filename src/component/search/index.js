@@ -10,9 +10,6 @@ import { connect } from 'react-redux'
 import { initCityAsync } from '../../store/actionCreator'
 
 class Search extends Component {
-    componentDidMount() {
-        this.props.getInitCity()
-    }
     render() {
         return <div className={searchCss.search} onClick={() => { this.props.history.push('/citylist') }}>
             <div className={searchCss.search_left}>
