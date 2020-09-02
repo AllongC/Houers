@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { NavBar, Icon } from 'antd-mobile';
 import { connect } from 'react-redux';
-
+import { List } from 'react-virtualized';
 // 引入axios实例
 import { instance as axios } from '../../untils/request';
 // 引入css
@@ -11,6 +11,23 @@ class CityList extends Component {
     state = {
         list: [],
         letter: []
+    }
+    rowRenderer = ({
+        key, // Unique key within array of rows
+        index, // Index of row within collection
+        isScrolling, // The List is currently being scrolled
+        isVisible, // This row is visible within the List (eg it is not an overscanned row)
+        style, // Style object to be applied to row (to position it)
+    }) => {
+        const { list } = this.state
+        return (
+            <div key={key} style={style}>
+                <div className={listCss.list_item}>
+                    {list[index].name}
+                    {list[index].list.map(item => <div key={item} className={listCss.list_items}>{item}</div>)}
+                </div>
+            </div>
+        );
     }
     async componentDidMount() {
         const res = await Promise.all([this.getHotCity(), this.getAllCity()])
@@ -35,6 +52,10 @@ class CityList extends Component {
             letter: letterArr
         })
     }
+    rowHeight = ({ index }) => {
+        const height = this.state.list[index].list.length * 48 + 40
+        return height
+    }
     getHotCity = () => {
         return axios.get('/area/hot')
     }
@@ -54,10 +75,13 @@ class CityList extends Component {
 
             {/* 2.0 列表 start */}
             <div className={listCss.list_box}>
-                {list.map(item => <div key={item.name} className={listCss.list_item}>
-                    {item.name}
-                    {item.list.map(item => <div key={item} className={listCss.list_items}>{item}</div>)}
-                </div>)}
+                <List
+                    width={window.innerWidth}
+                    height={window.innerHeight - 45}
+                    rowCount={list.length}
+                    rowHeight={this.rowHeight}
+                    rowRenderer={this.rowRenderer}
+                />
             </div>
             {/* 2.0 列表 end */}
         </div>
