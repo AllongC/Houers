@@ -5,6 +5,8 @@ import Home from './pages/home'
 // 引入connect
 import { connect } from 'react-redux'
 
+import CityLists from './demo/cityList'
+
 import { initCityAsync } from './store/actionCreator'
 
 class App extends Component {
