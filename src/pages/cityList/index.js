@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 // 引入axios实例
 import { instance as axios } from '../../untils/request';
+// 引入css
+import listCss from './index.module.scss'
 
 class CityList extends Component {
     state = {
@@ -40,12 +42,24 @@ class CityList extends Component {
         return axios.get('/area/city?level=1')
     }
     render() {
+        const { list } = this.state
         return <div>
+            {/*1.0 头部 start */}
             <NavBar
                 mode="light"
                 icon={<Icon type="left" />}
                 onLeftClick={() => console.log('onLeftClick')}
             >{this.props.cityName}</NavBar>
+            {/*1.0 头部 end */}
+
+            {/* 2.0 列表 start */}
+            <div className={listCss.list_box}>
+                {list.map(item => <div key={item.name} className={listCss.list_item}>
+                    {item.name}
+                    {item.list.map(item => <div key={item} className={listCss.list_items}>{item}</div>)}
+                </div>)}
+            </div>
+            {/* 2.0 列表 end */}
         </div>
     }
 }
