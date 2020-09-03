@@ -3,10 +3,16 @@ import { NavBar, Icon } from 'antd-mobile';
 import { connect } from "react-redux";
 import MapCss from "./index.module.scss";
 
+import { instance as axios } from '../../untils/request'
+
 class Map extends Component {
-    componentDidMount() {
+    async componentDidMount() {
         var map = new window.BMap.Map("container");
         map.centerAndZoom(this.props.cityName);
+        // 获取城市id
+        const { value } = (await (axios.get('/area/info', { params: { name: this.props.cityName } }))).data.body
+        // 获取当前城市的租房定位
+        const res = (await axios.get('/area/map', { params: { id: value } })).data.body
     }
     render() {
         return <div>
