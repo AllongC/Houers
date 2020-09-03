@@ -18,7 +18,19 @@ class Map extends Component {
         const { value } = (await (axios.get('/area/info', { params: { name: this.props.cityName } }))).data.body
         // 获取当前城市的租房定位
         const res = (await axios.get('/area/map', { params: { id: value } })).data.body
-        console.log(res);
+        // 循环租房地点
+        res.forEach(item => {
+            var point = new BMap.Point(item.coord.longitude, item.coord.latitude);
+            var opts = {
+                position: point,    // 指定文本标注所在的地理位置
+            }
+            var label = new BMap.Label(`<div class=${MapCss.aaa}><span>${item.label}</span><span>${item.count}</span></div>`, opts);  // 创建文本标注对象
+            map.addOverlay(label);
+            label.setStyle({
+                border: 'none',
+                backgroundColor: 'unset'
+            });
+        })
     }
     render() {
         return <div>

@@ -1,3 +1,17 @@
 .map {
     height: calc(100vh - 45px);
 }
+.aaa {
+    overflow: hidden;
+    border: 2px solid white;
+    background-color: #69c15f;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.8;
+    color: white;
+}
