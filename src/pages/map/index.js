@@ -20,16 +20,26 @@ class Map extends Component {
         const res = (await axios.get('/area/map', { params: { id: value } })).data.body
         // 循环租房地点
         res.forEach(item => {
-            var point = new BMap.Point(item.coord.longitude, item.coord.latitude);
-            var opts = {
+            const point = new BMap.Point(item.coord.longitude, item.coord.latitude);
+            const opts = {
                 position: point,    // 指定文本标注所在的地理位置
             }
-            var label = new BMap.Label(`<div class=${MapCss.aaa}><span>${item.label}</span><span>${item.count}</span></div>`, opts);  // 创建文本标注对象
-            map.addOverlay(label);
+            const label = new BMap.Label(`<div class=${MapCss.aaa}><span>${item.label}</span><span>${item.count}</span></div>`, opts);  // 创建文本标注对象
             label.setStyle({
                 border: 'none',
                 backgroundColor: 'unset'
             });
+            label.addEventListener('click', () => {
+                window.setTimeout(() => {
+                    map.clearOverlays()
+                }, 0)
+                axios.get('/area/map', { params: { id: item.value } }).then(res => {
+                    const { body } = res.data
+                    console.log(body);
+                })
+
+            })
+            map.addOverlay(label);
         })
     }
     render() {

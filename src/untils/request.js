@@ -6,7 +6,7 @@ import axios from 'axios'
 let instanceTime = 0
 
 
-export const baseURL = process.env.REACT_APP_URL
+export const baseURL = 'https://api-haoke-web.itheima.net'
 export const instance = axios.create({
     baseURL,
 });
